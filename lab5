@@ -1,0 +1,24 @@
+def crc8(data: bytes, poly: int = 0x07, init_crc: int = 0x00) -> int:
+    crc = init_crc
+    for byte in data:
+        crc ^= byte
+        for _ in range(8):
+            if crc & 0x80:
+                crc = ((crc << 1) ^ poly) & 0xFF
+            else:
+                crc = (crc << 1) & 0xFF
+    return crc
+
+text = input("Введите текст для хеширования (CRC-8): ")
+data = text.encode('utf-8')
+checksum = crc8(data)
+
+
+hex_hash   = f"{checksum:02X}"
+dec_hash   = f"{checksum}"
+bin_hash   = f"{checksum:08b}"
+
+print("CRC-8 хеш:")
+print(f"  Шестнадцатеричный: {hex_hash}")
+print(f"  Десятичный       : {dec_hash}")
+print(f"  Двоичный         : {bin_hash}")
