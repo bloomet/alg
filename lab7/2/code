@@ -1,0 +1,58 @@
+import csv
+import heapq
+from math import inf
+
+def load_graph(path): # Формат - station_a, station_b, travel_time
+
+    graph = {}
+    with open(path, newline='', encoding='utf-8') as f:
+        reader = csv.DictReader(f)
+        for row in reader:
+            a = row['station_a'].strip()
+            b = row['station_b'].strip()
+            w = float(row['travel_time'])
+            graph.setdefault(a, []).append((b, w))
+            graph.setdefault(b, []).append((a, w))
+    return graph
+
+def dijkstra(graph, source, target):
+    dist = {u: inf for u in graph}
+    prev = {u: None for u in graph}
+    dist[source] = 0
+    heap = [(0, source)]
+    while heap:
+        d_u, u = heapq.heappop(heap)
+        if u == target:
+            break
+        if d_u > dist[u]:
+            continue
+        for v, w in graph[u]:
+            alt = d_u + w
+            if alt < dist[v]:
+                dist[v] = alt
+                prev[v] = u
+                heapq.heappush(heap, (alt, v))
+    if dist[target] == inf:
+        return None, None
+
+    path = []
+    u = target
+    while u is not None:
+        path.append(u)
+        u = prev[u]
+    path.reverse()
+    return dist[target], path
+
+
+graph = load_graph("connections.csv")
+print("Доступные станции:", ", ".join(sorted(graph.keys())))
+src = input("Откуда: ").strip()
+dst = input("Куда: ").strip()
+if src not in graph or dst not in graph:
+    print("Ошибка: станции не найдены.")
+dist, path = dijkstra(graph, src, dst)
+if path is None:
+    print("Маршрут не существует.")
+else:
+    print(f"Минимальное время: {dist:.1f} мин")
+    print("Путь:", " → ".join(path))
