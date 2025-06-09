@@ -1,0 +1,44 @@
+station_a,station_b,travel_time
+King's Cross St. Pancras,Russell Square,2.0
+Russell Square,Holborn,2.0
+Holborn,Covent Garden,2.0
+Covent Garden,Leicester Square,2.5
+Leicester Square,Piccadilly Circus,1.5
+Piccadilly Circus,Green Park,2.0
+Green Park,Hyde Park Corner,2.5
+Hyde Park Corner,Knightsbridge,2.0
+
+King's Cross St. Pancras,Angel,2.0
+Angel,Old Street,2.0
+Old Street,Moorgate,1.5
+Moorgate,Bank,2.0
+
+Bank,St. Paul's,1.5
+St. Paul's,Chancery Lane,2.0
+Chancery Lane,Holborn,1.5
+Holborn,Tottenham Court Road,2.0
+Tottenham Court Road,Oxford Circus,2.0
+
+Oxford Circus,Piccadilly Circus,2.0
+Piccadilly Circus,Charing Cross,2.5
+Charing Cross,Embankment,1.5
+Embankment,Waterloo,2.0
+Waterloo,Lambeth North,1.5
+
+Waterloo,Southwark,2.0
+Southwark,London Bridge,2.0
+London Bridge,Bermondsey,2.5
+Bermondsey,Canada Water,2.0
+Canada Water,Canary Wharf,3.0
+
+Embankment,Westminster,1.5
+Westminster,St. James's Park,2.0
+St. James's Park,Victoria,1.5
+Victoria,Sloane Square,2.0
+Sloane Square,South Kensington,2.5
+
+Victoria,Green Park,2.0
+Green Park,Oxford Circus,2.0
+Oxford Circus,Warren Street,1.5
+Warren Street,Euston,2.0
+Euston,King's Cross St. Pancras,2.5
