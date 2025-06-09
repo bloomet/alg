@@ -1,0 +1,40 @@
+def min_coins_change(N, S, M):
+    INF = float('inf')
+    dp = [INF] * (N + 1)
+    used = [[0] * len(S) for _ in range(N + 1)]
+    dp[0] = 0
+
+    for i in range(N + 1):
+        if dp[i] == INF:
+            continue
+        for j, val in enumerate(S):
+            if i + val <= N and used[i][j] < M[j]:
+                if dp[i] + 1 < dp[i + val]:
+                    dp[i + val] = dp[i] + 1
+                    used[i + val] = used[i].copy()
+                    used[i + val][j] += 1
+
+    if dp[N] == INF:
+        return None
+    return dp[N], used[N]
+
+
+N = int(input("Введите сумму сдачи N (целое число): "))
+S = []
+M = []
+for j in range(1, 5):
+    s = int(input(f"Введите номинал монеты #{j}: "))
+    m = int(input(f"Введите количество монет номинала {s}: "))
+    S.append(s)
+    M.append(m)
+
+result = min_coins_change(N, S, M)
+if result is None:
+    print("Невозможно выдать сдачу данной комбинацией монет.")
+else:
+    cnt, comb = result
+    print(f"\nМинимальное число монет: {cnt}")
+    print("Комбинация для выдачи сдачи:")
+    for denom, count in zip(S, comb):
+        if count > 0:
+            print(f"  {count} монет(а) номиналом {denom}")
